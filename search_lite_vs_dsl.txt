@@ -1,0 +1,11 @@
+GET logstash-2017.10.2*/_search
+{
+  "query": {
+    "match": {
+      "message": "pandas"
+    }
+  }
+}
+
+GET logstash-2017.10.2*/_search?q=pandas
+
