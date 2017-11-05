@@ -1,0 +1,20 @@
+DELETE blog
+
+POST blog/post
+{
+  "author": "Lukasz",
+  "language": "Java",
+  "jdk_version": "8",
+  "text": "Java8 is cool cause it have lambdas"
+}
+
+GET blog/_search
+{
+  "aggs": {
+    "avg_jdk": {
+      "avg": {
+        "field": "jdk_version"
+      }
+    }
+  }
+}

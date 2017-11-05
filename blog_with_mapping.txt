@@ -14,6 +14,8 @@ PUT blog
   }
 }
 
+
+
 POST blog/post
 {
   "author": "Lukasz",
@@ -23,7 +25,17 @@ POST blog/post
 }
 
 
-GET blog/_mapping
+
+GET blog/_search
+{
+  "aggs": {
+    "avg_jdk": {
+      "avg": {
+        "field": "jdk_version"
+      }
+    }
+  }
+}
 
 GET blog/_search
 {
@@ -35,5 +47,4 @@ GET blog/_search
     }
   }
 }
-
 

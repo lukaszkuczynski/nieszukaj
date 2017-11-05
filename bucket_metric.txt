@@ -1,0 +1,19 @@
+GET earth_events/_search
+{
+  "size": 0,
+  "aggs": {
+    "elevations": {
+      "histogram": {
+        "field": "Elevation",
+        "interval": 500
+      },
+      "aggs": {
+        "avg_deaths": {
+          "avg": {
+            "field": "DEATHS"
+          }
+        }
+      }
+    }
+  }
+}
