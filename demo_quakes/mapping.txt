@@ -1,0 +1,25 @@
+PUT earth_events/_mapping/quake
+{
+  	"quake": {
+  		"properties": {
+  			"location": {
+  				"type": "geo_point"
+  			},
+  			"TOTAL_MISSING": {"type": "long"},
+  			"DAMAGE_MILLIONS_DOLLARS": {"type": "long"},
+			"DEATHS": {"type": "long"},
+			"Elevation": {"type": "long"},
+			
+			"HOUSES_DESTROYED": {"type": "long"},
+			"INJURIES": {"type": "long"},
+			"MISSING": {"type": "long"},
+			"TOTAL_DAMAGE_MILLIONS_DOLLARS": {"type": "long"},
+			"TOTAL_DEATHS": {"type": "long"},
+			"TOTAL_HOUSES_DESTROYED": {"type": "long"},
+			"TOTAL_INJURIES": {"type": "long"},
+			"TOTAL_MISSING": {"type": "long"}
+			
+			
+  		}
+  	}
+ }
