@@ -1,0 +1,13 @@
+GET logstash-2017.10.2*/_search
+{
+  "query": {
+    "bool": {
+      "must": [
+        { "match": { "message": "pandas" } }
+      ],
+      "filter": [
+        { "term": { "user.keyword": "AdamSmitht1" } }
+      ]
+    }
+  }
+}

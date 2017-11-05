@@ -1,0 +1,13 @@
+GET blog/_analyze
+{
+  "analyzer": "standard", 
+  "text": ["Java is nice when you care about static typing"]
+}
+
+GET blog/_analyze
+{
+  "analyzer": "english", 
+  "text": ["Java is nice when you care about static typing"]
+}
+
+

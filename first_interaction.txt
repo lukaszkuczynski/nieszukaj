@@ -1,0 +1,20 @@
+POST blog/post
+{
+  "author": "Lukasz",
+  "language": "Java",
+  "jdk_version": "8",
+  "text": "Java8 is cool cause it have lambdas"
+}
+
+GET blog/post/_search?q=java
+
+GET blog/post/_search
+{
+  "query": {
+    "match": {
+      "text": "cool"
+    }
+  }
+}
+
+

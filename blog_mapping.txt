@@ -1,0 +1,39 @@
+DELETE blog
+
+PUT blog
+{
+  "mappings": {
+    "post": {
+      "properties": {
+        "text": { "type": "text" },
+        "language": {"type": "keyword"},
+        "author": {"type": "keyword"},
+        "jdk_version": {"type": "long"}
+      }   
+    }
+  }
+}
+
+POST blog/post
+{
+  "author": "Lukasz",
+  "language": "Java",
+  "jdk_version": "8",
+  "text": "Java8 is cool cause it have lambdas"
+}
+
+
+GET blog/_mapping
+
+GET blog/_search
+{
+  "query": {
+    "range": {
+      "jdk_version": {
+        "gte": 6
+      }
+    }
+  }
+}
+
+

@@ -1,0 +1,12 @@
+GET logstash-2017.10.2*/_search
+{
+  "query": {
+    "constant_score": {
+      "filter": {
+        "term": {
+          "user.keyword": "AdamSmitht1"
+        }
+      }
+    }
+  }
+}
