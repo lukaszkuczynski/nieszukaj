@@ -1,0 +1,40 @@
+GET earth_events/_search
+{
+  "size": 0, 
+  "aggs": {
+    "top_countries": {
+      "terms": {
+        "field": "Country.keyword",
+        "size": 10
+      }
+    }
+  }
+}
+
+
+GET earth_events/_search
+{
+  "size": 0,
+  "query": {
+    "match": {
+      "Country": "Iceland"
+    }
+    
+  }, 
+  "aggs": {
+    "elevations": {
+      "histogram": {
+        "field": "Elevation",
+        "interval": 500
+      },
+      "aggs": {
+        "avg_deaths": {
+          "avg": {
+            "field": "DEATHS"
+          }
+        }
+      }
+    }
+  }
+}
+
