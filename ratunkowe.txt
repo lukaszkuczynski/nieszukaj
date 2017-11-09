@@ -1,0 +1,174 @@
+# 13 podstawowe operacje
+
+DELETE blog
+
+GET blog
+
+POST blog/post
+{
+  "author": "Lukasz",
+  "language": "Java",
+  "jdk_version": "8",
+  "text": "Java8 is cool cause it have lambdas"
+}
+
+GET blog
+
+GET blog/_mapping
+
+GET blog/post/_search?q=java
+
+
+# 18 demo twitter
+
+GET logstash-2017.10.2*/_search
+{
+  "query": {
+    "match": {
+      "message": "pandas"
+    }
+  }
+}
+
+GET logstash-2017.10.2*/_search?q=pandas
+
+# 21 fitr czy query
+GET logstash-2017.10.2*/_search
+{
+  "query": {
+    "constant_score": {
+      "filter": {
+        "term": {
+          "user.keyword": "AdamSmitht1"
+        }
+      }
+    }
+  }
+}
+
+GET logstash-2017.10.2*/_search
+{
+  "query": {
+    "bool": {
+      "must": [
+        { "match": { "message": "pandas" } }
+      ],
+      "filter": [
+        { "term": { "user.keyword": "AdamSmitht1" } }
+      ]
+    }
+  }
+}
+
+
+# 27 tworzenie agregacji
+GET earth_events/_search
+{
+  "size": 0,
+  "aggs": {
+    "elevations": {
+      "histogram": {
+        "field": "Elevation",
+        "interval": 500
+      }
+    }
+  }
+}
+
+GET earth_events/_search
+{
+  "size": 0,
+  "aggs": {
+    "elevations": {
+      "histogram": {
+        "field": "Elevation",
+        "interval": 500
+      },
+      "aggs": {
+        "avg_deaths": {
+          "avg": {
+            "field": "DEATHS"
+          }
+        }
+      }
+    }
+  }
+}
+
+# 28 mapowanie
+DELETE blog
+
+POST blog/post
+{
+  "author": "Lukasz",
+  "language": "Java",
+  "jdk_version": "8",
+  "text": "Java8 is cool cause it have lambdas"
+}
+
+GET blog/_search
+{
+  "aggs": {
+    "avg_jdk": {
+      "avg": {
+        "field": "jdk_version"
+      }
+    }
+  }
+}
+
+
+# 28 mapowanie lepiej
+DELETE blog
+
+PUT blog
+{
+  "mappings": {
+    "post": {
+      "properties": {
+        "text": { "type": "text" },
+        "language": {"type": "keyword"},
+        "author": {"type": "keyword"},
+        "jdk_version": {"type": "long"}
+      }   
+    }
+  }
+}
+
+
+
+POST blog/post
+{
+  "author": "Lukasz",
+  "language": "Java",
+  "jdk_version": "8",
+  "text": "Java8 is cool cause it have lambdas"
+}
+
+
+
+GET blog/_search
+{
+  "aggs": {
+    "avg_jdk": {
+      "avg": {
+        "field": "jdk_version"
+      }
+    }
+  }
+}
+
+GET blog/_search
+{
+  "query": {
+    "range": {
+      "jdk_version": {
+        "gte": 6
+      }
+    }
+  }
+}
+
+	
+
+
